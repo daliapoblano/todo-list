@@ -1,19 +1,17 @@
 import './App.css'
+//Importing TodoList 
+import TodoList from './TodoList'
+//Importing TodoForm
+import TodoForm from "./TodoForm";
 
 function App() {
-  const todos = [
-    {id: 1, title: "Complete hw assingments on BlackBoard"},
-    {id: 2, title: "Workout at Home"},
-    {id: 3, title: "Review React Course Material"},
-]
   return (
     <div>
       <h1>My Todos</h1>
-
-      {/* Un-ordered list thaat maps the todo array to html that will render a list item per todo */}
-      <ul>
-        {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
-      </ul>
+      {/* Adding instance of the TodoForm */}
+      <TodoForm />
+      {/* Adding instance of the TodoList */}
+      <TodoList />
     </div>
   )
 }
