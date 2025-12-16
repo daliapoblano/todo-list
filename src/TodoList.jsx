@@ -1,3 +1,6 @@
+//importing TodoListItem
+import TodoListItem from "./TodoListItem";
+
 //{/*extract from TodoList.jsx*/}
 function TodoList(){
     const todos = [
@@ -6,9 +9,11 @@ function TodoList(){
         {id: 3, title: "Review React Course Material"},
     ]
 
-    return (<ul>
-    {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
-  </ul>);
-}
+    return (
+        <ul>
+        {todos.map(todo => (
+           <TodoListItem key={todo.id} todo={todo} />))}
+       </ul>
+    )}
 
-export default TodoList
+export default TodoList;
