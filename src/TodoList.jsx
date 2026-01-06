@@ -6,7 +6,7 @@ function TodoList({todoList, onCompleteTodo}){
 
     //filtering out completed todos 
     const filteredTodoList = todoList.filter(
-        (todo) => todo.isCompleted === false 
+        (todo) => !todo.isCompleted 
     );
 
     return (
