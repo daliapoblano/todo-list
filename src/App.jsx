@@ -1,8 +1,8 @@
 import './App.css'
 //Importing TodoList 
-import TodoList from './TodoList'
+import TodoList from './features/TodoList/TodoList'
 //Importing TodoForm
-import TodoForm from "./TodoForm";
+import TodoForm from "./features/TodoForm";
 //Importing useState hook
 import { useState } from "react";
 
