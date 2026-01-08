@@ -32,6 +32,17 @@ function App() {
     setTodoList(updatedTodos);
   }
 
+  //function loops through todos and matches edited versions to their original todo via id
+  function updateTodo(editedTodo) {
+    const updatedTodos = todoList.map((todo) =>
+      todo.id === editedTodo.id
+        ? { ...editedTodo }
+        : todo
+    );
+  
+    setTodoList(updatedTodos);
+  }
+
   return (
     <div>
       <h1>My Todos</h1>
@@ -41,6 +52,7 @@ function App() {
       <TodoList 
       todoList={todoList}
       onCompleteTodo={completeTodo}
+      onUpdateTodo={updateTodo}
       />
     </div>
   )
