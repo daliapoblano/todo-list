@@ -33,9 +33,7 @@ function TodoListItem({todo, onCompleteTodo, onUpdateTodo})
                <>
                <TextInputWithLabel 
                     value={workingTitle} 
-                    onChange={(event)=>
-                    setWorkingTitle(event.target.value)
-                  }
+                    onChange={(e) => setWorkingTitle(e.target.value)}
                />
                <button
                     type="button"
