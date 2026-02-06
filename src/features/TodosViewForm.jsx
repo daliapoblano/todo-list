@@ -1,7 +1,19 @@
-function TodosViewForm(){
+import { useState } from "react";
+
+function TodosViewForm({queryString}){
+    const [localQueryString, setLocalQueryString] = useState(queryString);
     return (
         <form>
             <div>
+                <label>
+                    Search
+                    <input
+                        type="text"
+                        value={localQueryString}
+                        onChange={(e) => setLocalQueryString(e.target.value)}
+                    />
+                </label>
+
                 <label>
                     Sort by
                     <select>
