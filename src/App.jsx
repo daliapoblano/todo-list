@@ -3,6 +3,8 @@ import './App.css'
 import TodoList from './features/TodoList/TodoList'
 //Importing TodoForm
 import TodoForm from "./features/TodoForm";
+//Importing TodosViewForm 
+import TodosViewForm from "./features/TodosViewForm";
 //Importing useState hook
 import { useState, useEffect, useCallback } from "react";
 
@@ -17,6 +19,7 @@ function App() {
   const [isSaving, setIsSaving] = useState(false);
   const [sortField, setSortField] = useState("createdTime");
   const [sortDirection, setSortDirection] = useState("desc");
+  const [queryString, setQueryString] = useState("");
   
   const encodeUrl = useCallback(() => {
     let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
@@ -198,6 +201,7 @@ function App() {
       isLoading={isLoading}
       isSaving={isSaving}
       />
+      <TodosViewForm queryString={queryString}/>
       {/* Error message display */}
       {errorMessage && (
       <div>

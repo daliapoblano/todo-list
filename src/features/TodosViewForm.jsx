@@ -14,6 +14,13 @@ function TodosViewForm({queryString}){
                     />
                 </label>
 
+                <button
+                        type="button"
+                        onClick={() => setLocalQueryString(" ")}
+                        >
+                      Clear
+                </button>
+
                 <label>
                     Sort by
                     <select>
