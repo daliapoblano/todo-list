@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function TodosViewForm({queryString}){
+function TodosViewForm({queryString, setQueryString}){
     const [localQueryString, setLocalQueryString] = useState(queryString);
+    
+    useEffect(() => {
+        const debounce = setTimeout(() => {
+            setQueryString(localQueryString);
+        }, 500);
+
+        return () => {
+            clearTimeout(debounce);
+        };
+    }, [localQueryString, setQueryString]);
+    
     return (
         <form>
             <div>
