@@ -35,7 +35,7 @@ function TodosViewForm({queryString, setQueryString}){
 
                 <label className="labels">
                     Sort by
-                    <select>
+                    <select id="sortSelect">
                         <option value="title">Title</option>
                         <option value="createdTime">Time added</option>
                     </select>
@@ -43,7 +43,7 @@ function TodosViewForm({queryString, setQueryString}){
 
                 <label className="labels">
                     Direction
-                    <select>
+                    <select id="directionSelect">
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                     </select>
