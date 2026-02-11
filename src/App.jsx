@@ -1,4 +1,5 @@
 import './App.css'
+import styles from './App.module.css';
 //Importing TodoList 
 import TodoList from './features/TodoList/TodoList'
 //Importing TodoForm
@@ -186,7 +187,7 @@ function App() {
   };
   
   return (
-    <div>
+    <div className={styles.appContainer}>
       <h1>My Todos</h1>
       {/* Adding instance of the TodoForm */}
       <TodoForm 
@@ -204,7 +205,7 @@ function App() {
       <TodosViewForm queryString={queryString}/>
       {/* Error message display */}
       {errorMessage && (
-      <div>
+      <div className={styles.errorBox}>
         <hr />
         <p>{errorMessage}</p>
         <button onClick={() => setErrorMessage("")}>
