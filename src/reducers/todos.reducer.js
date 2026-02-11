@@ -28,6 +28,7 @@ function reducer (state = initialState, action){
             };
     }
 }
+
 export const initialState = {
     todoList: [],
     isLoading: false,
