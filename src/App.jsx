@@ -3,16 +3,13 @@ import './App.css'
 import TodoList from './features/TodoList/TodoList'
 //Importing TodoForm
 import TodoForm from "./features/TodoForm";
+//Importing TodosViewForm 
+import TodosViewForm from "./features/TodosViewForm";
 //Importing useState hook
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
 
 const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`; 
-
-const encodeUrl = ({ sortField, sortDirection }) =>{
-    let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
-    return encodeURI(`${url}?${sortQuery}`);
-}
 
 function App() {
   //State value that will hold a new todo
@@ -22,6 +19,12 @@ function App() {
   const [isSaving, setIsSaving] = useState(false);
   const [sortField, setSortField] = useState("createdTime");
   const [sortDirection, setSortDirection] = useState("desc");
+  const [queryString, setQueryString] = useState("");
+  
+  const encodeUrl = useCallback(() => {
+    let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
+    return encodeURI(`${url}?${sortQuery}`);
+  }, [sortDirection,sortField]);
 
   //fetching requests
   const token = `Bearer ${import.meta.env.VITE_PAT}`;
@@ -38,7 +41,7 @@ function App() {
     };
 
     try{
-      const encodedUrl = encodeUrl({sortField,sortDirection});
+      const encodedUrl = encodeUrl();
       const resp = await fetch(encodedUrl, options);
 
       if (!resp.ok) {
@@ -198,6 +201,7 @@ function App() {
       isLoading={isLoading}
       isSaving={isSaving}
       />
+      <TodosViewForm queryString={queryString}/>
       {/* Error message display */}
       {errorMessage && (
       <div>
