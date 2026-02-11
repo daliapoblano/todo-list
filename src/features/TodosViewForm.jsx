@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
+const StyledForm = styled.form`
+    display: flex;
+    gap: 8px;
+    margin-top:10px;
+    `;
 function TodosViewForm({queryString, setQueryString}){
     const [localQueryString, setLocalQueryString] = useState(queryString);
     
@@ -14,7 +20,7 @@ function TodosViewForm({queryString, setQueryString}){
     }, [localQueryString, setQueryString]);
     
     return (
-        <form>
+        <StyledForm>
             <div>
                 <label className="labels">
                     Search
@@ -28,7 +34,7 @@ function TodosViewForm({queryString, setQueryString}){
                 <button
                         id="clearBtn"
                         type="button"
-                        onClick={() => setLocalQueryString(" ")}
+                        onClick={() => setLocalQueryString("")}
                         >
                       Clear
                 </button>
@@ -49,7 +55,7 @@ function TodosViewForm({queryString, setQueryString}){
                     </select>
                 </label>
             </div>
-        </form>
+        </StyledForm>
     );
 }
 
