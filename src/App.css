@@ -12,3 +12,10 @@ h1{
     font-weight: 400;
     font-style: normal;
 }
+#addTodoBtn{
+    border-radius: 50px;
+    background-color:#FFF4B6;
+    font-family:'Fascinate Inline', cursive;
+    font-size:small;
+}
+
