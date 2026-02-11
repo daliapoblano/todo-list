@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import TextInputWithLabel from "../../shared/TextInputWithLabel";
+import styles from "./TodoListItem.module.css";
 
 //function that takes in a todo props
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
@@ -23,7 +24,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   }
 
   return (
-    <li>
+    <li className={styles.listItem}>
       <form onSubmit={handleUpdate}>
         <input
           type="checkbox"
