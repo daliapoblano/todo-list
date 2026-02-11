@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
 import TextInputWithLabel from "../../shared/TextInputWithLabel";
+import styles from "./TodoListItem.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCat } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+
+const StyledCat = styled(FontAwesomeIcon)`
+    cursor: pointer;
+    margin-right: 8px;
+    opacity: ${({ completed }) => (completed ? 0.3 : 1)};`;
 
 //function that takes in a todo props
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
@@ -23,12 +32,12 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   }
 
   return (
-    <li>
+    <li className={styles.listItem}>
       <form onSubmit={handleUpdate}>
-        <input
-          type="checkbox"
-          checked={todo.isCompleted}
-          onChange={() => onCompleteTodo(todo.id)}
+        <StyledCat
+          icon={faCat}
+          completed={todo.isCompleted}
+          onClick={() => onCompleteTodo(todo.id)}
         />
 
         {isEditing ? (
