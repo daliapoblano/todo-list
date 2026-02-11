@@ -1,3 +1,8 @@
+html,
+body,
+#root{
+    background-color:#FFD1D7;
+}
 h1{
     font-size: 50px;
     font-family: 'Fascinate Inline', cursive;
@@ -6,7 +11,4 @@ h1{
     font-family: "Fascinate Inline", system-ui;
     font-weight: 400;
     font-style: normal;
-  }
-#root{
-    background-color:#FFD1D7;
 }
