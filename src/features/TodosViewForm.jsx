@@ -16,7 +16,7 @@ function TodosViewForm({queryString, setQueryString}){
     return (
         <form>
             <div>
-                <label>
+                <label className="labels">
                     Search
                     <input
                         type="text"
@@ -26,13 +26,14 @@ function TodosViewForm({queryString, setQueryString}){
                 </label>
 
                 <button
+                        id="clearBtn"
                         type="button"
                         onClick={() => setLocalQueryString(" ")}
                         >
                       Clear
                 </button>
 
-                <label>
+                <label className="labels">
                     Sort by
                     <select>
                         <option value="title">Title</option>
@@ -40,7 +41,7 @@ function TodosViewForm({queryString, setQueryString}){
                     </select>
                 </label>
 
-                <label>
+                <label className="labels">
                     Direction
                     <select>
                         <option value="asc">Ascending</option>

@@ -18,4 +18,14 @@ h1{
     font-family:'Fascinate Inline', cursive;
     font-size:small;
 }
+.labels{
+    font-family: 'Fascinate Inline', cursive;
+    font-size:medium;
+}
+#clearBtn{
+    border-radius:50px;
+    background-color:#FFF4B6;
+    font-family:'Fascinate Inline', cursive;
+    font-size:small;
+}
 
