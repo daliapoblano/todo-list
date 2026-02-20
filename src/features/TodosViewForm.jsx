@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const StyledForm = styled.form`
-    display: flex;
-    gap: 8px;
-    margin-top:10px;
-    `;
-function TodosViewForm({queryString, setQueryString}){
+function TodosViewForm({queryString, setQueryString, sortField, setSortField, sortDirection, setSortDirection}){
     const [localQueryString, setLocalQueryString] = useState(queryString);
     
     useEffect(() => {
@@ -18,9 +13,12 @@ function TodosViewForm({queryString, setQueryString}){
             clearTimeout(debounce);
         };
     }, [localQueryString, setQueryString]);
-    
+
+   function handleSubmit(e){
+    e.preventDefault();
+   }
     return (
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
             <div>
                 <label className="labels">
                     Search
@@ -41,7 +39,11 @@ function TodosViewForm({queryString, setQueryString}){
 
                 <label className="labels">
                     Sort by
-                    <select id="sortSelect">
+                    <select 
+                    id="sortSelect"
+                    value={sortField}
+                    onChange={(e) => setSortField(e.target.value)}
+                    >
                         <option value="title">Title</option>
                         <option value="createdTime">Time added</option>
                     </select>
@@ -49,7 +51,11 @@ function TodosViewForm({queryString, setQueryString}){
 
                 <label className="labels">
                     Direction
-                    <select id="directionSelect">
+                    <select 
+                    id="directionSelect"
+                    value={sortDirection}
+                    onChange={(e) => setSortDirection(e.target.value)}
+                    >
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                     </select>
@@ -60,3 +66,9 @@ function TodosViewForm({queryString, setQueryString}){
 }
 
 export default TodosViewForm;
+
+const StyledForm = styled.form`
+    display: flex;
+    gap: 8px;
+    margin-top:10px;
+    `;

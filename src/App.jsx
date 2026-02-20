@@ -61,7 +61,7 @@ function App() {
     } 
   };
       fetchTodos();
-    }, [sortField,sortDirection]);
+    }, [sortField,sortDirection,queryString]);
 
   //addTodo handler function 
   const addTodo = async (newTodo) => {
@@ -184,7 +184,14 @@ function App() {
       isLoading={todoState.isLoading}
       isSaving={todoState.isSaving}
       />
-      <TodosViewForm queryString={queryString}/>
+      <TodosViewForm 
+      queryString={queryString}
+      setQueryString={setQueryString}
+      sortField={sortField}
+      setSortField={setSortField}
+      sortDirection={sortDirection}
+      setSortDirection={setSortDirection}
+      />
       {/* Error message display */}
       {todoState.errorMessage && (
       <div className={styles.errorBox}>
