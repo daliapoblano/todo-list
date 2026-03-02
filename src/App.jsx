@@ -22,8 +22,13 @@ function App() {
   
   const encodeUrl = useCallback(() => {
     let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
-    return encodeURI(`${url}?${sortQuery}`);
-  }, [sortDirection,sortField]);
+    let searchQuery ="";
+
+    if (queryString) {
+      searchQuery = `&filterByFormula=SEARCH("${queryString}", {title})`;
+    }
+    return encodeURI(`${url}?${sortQuery}${searchQuery}`);
+  }, [sortDirection,sortField,queryString]);
 
   //fetching requests
   const token = `Bearer ${import.meta.env.VITE_PAT}`;
