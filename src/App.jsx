@@ -25,7 +25,8 @@ function App() {
     let searchQuery ="";
 
     if (queryString) {
-      searchQuery = `&filterByFormula=SEARCH("${queryString}", {title})`;
+      const encodedSearch = encodeURIComponent(queryString);
+      searchQuery = `&filterByFormula=SEARCH("${encodedSearch}", {title})`;
     }
     return encodeURI(`${url}?${sortQuery}${searchQuery}`);
   }, [sortDirection,sortField,queryString]);
