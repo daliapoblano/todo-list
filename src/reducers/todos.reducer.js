@@ -105,6 +105,21 @@ function reducer (state = initialState, action){
                 ...state,
                 errorMessage: "",
             };
+        case actions.setSortField:
+            return{
+                ...state,
+                sortField: action.value,
+            };
+        case actions.setSortDirection:
+            return{
+                ...state,
+                sortDirection: action.value,
+            };
+        case actions.setQueryString:
+            return{
+                ...state,
+                queryString: action.value,
+            };
         default:
             return state;
     }
