@@ -14,6 +14,10 @@ export const actions ={
     revertTodo: 'revertTodo',
 
     clearError: 'clearError',
+
+    setSortField: 'setSortField',
+    setSortDirection: 'setSortDirection',
+    setQueryString: 'setQueryString',
 };
 
 function reducer (state = initialState, action){
@@ -111,6 +115,9 @@ export const initialState = {
     isLoading: false,
     isSaving: false,
     errorMessage:"",
+    sortField: "createdTime",
+    sortDirection:"desc",
+    queryString: "",
 };
 
 export default reducer;
