@@ -47,7 +47,7 @@ function App() {
       const resp = await fetch(encodedUrl, options);
 
       if (!resp.ok) {
-        throw new Error(resp.statusText);
+        throw new Error(`Request failed with status ${resp.status}`);
       }
       const data = await resp.json();
 
@@ -94,7 +94,7 @@ function App() {
       const resp = await fetch(url,options);
 
       if(!resp.ok){
-        throw new Error(resp.statusText);
+        throw new Error(`Request failed with status ${resp.status}`);
       }
 
       const data = await resp.json();
@@ -158,7 +158,7 @@ function App() {
       const resp = await fetch(url, options);
   
       if (!resp.ok) {
-        throw new Error(resp.statusText);
+        throw new Error(`Request failed with status ${resp.status}`);
       }
     } catch (error) {
       dispatch({
