@@ -15,21 +15,18 @@ const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${impor
 
 function App() {
   //State value that will hold a new todo
-  const [sortField, setSortField] = useState("createdTime");
-  const [sortDirection, setSortDirection] = useState("desc");
-  const [queryString, setQueryString] = useState("");
   const [todoState, dispatch] = useReducer(todosReducer, initialTodosState);
   
   const encodeUrl = useCallback(() => {
-    let sortQuery = `sort[0][field]=${sortField}&sort[0][direction]=${sortDirection}`;
+    let sortQuery = `sort[0][field]=${todoState.sortField}&sort[0][direction]=${todoState.sortDirection}`;
     let searchQuery ="";
 
-    if (queryString) {
-      const encodedSearch = encodeURIComponent(queryString);
+    if (todoState.queryString) {
+      const encodedSearch = encodeURIComponent(todoState.queryString);
       searchQuery = `&filterByFormula=SEARCH("${encodedSearch}", {title})`;
     }
     return encodeURI(`${url}?${sortQuery}${searchQuery}`);
-  }, [sortDirection,sortField,queryString]);
+  }, [todoState.sortDirection,todoState.sortField,todoState.queryString]);
 
   //fetching requests
   const token = `Bearer ${import.meta.env.VITE_PAT}`;
@@ -67,7 +64,7 @@ function App() {
     } 
   };
       fetchTodos();
-    }, [sortField,sortDirection,queryString]);
+    }, [encodeUrl]);
 
   //addTodo handler function 
   const addTodo = async (newTodo) => {
@@ -191,12 +188,10 @@ function App() {
       isSaving={todoState.isSaving}
       />
       <TodosViewForm 
-      queryString={queryString}
-      setQueryString={setQueryString}
-      sortField={sortField}
-      setSortField={setSortField}
-      sortDirection={sortDirection}
-      setSortDirection={setSortDirection}
+      queryString={todoState.queryString}
+      sortField={todoState.sortField}
+      sortDirection={todoState.sortDirection}
+      dispatch={dispatch}
       />
       {/* Error message display */}
       {todoState.errorMessage && (
