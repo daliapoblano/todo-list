@@ -1,26 +1,33 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { actions as todosActions } from "../reducers/todos.reducer";
 
-const StyledForm = styled.form`
-    display: flex;
-    gap: 8px;
-    margin-top:10px;
-    `;
-function TodosViewForm({queryString, setQueryString}){
+function TodosViewForm({queryString, sortField, sortDirection, dispatch}){
     const [localQueryString, setLocalQueryString] = useState(queryString);
     
     useEffect(() => {
+        setLocalQueryString(queryString);
+      }, [queryString]);
+    
+    useEffect(() => {
         const debounce = setTimeout(() => {
-            setQueryString(localQueryString);
+            dispatch({
+                type: todosActions.setQueryString,
+                value: localQueryString,
+            });
         }, 500);
 
         return () => {
             clearTimeout(debounce);
         };
-    }, [localQueryString, setQueryString]);
-    
+    }, [localQueryString, dispatch]);
+
+   function handleSubmit(e){
+    e.preventDefault();
+   }
+
     return (
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
             <div>
                 <label className="labels">
                     Search
@@ -41,7 +48,16 @@ function TodosViewForm({queryString, setQueryString}){
 
                 <label className="labels">
                     Sort by
-                    <select id="sortSelect">
+                    <select 
+                    id="sortSelect"
+                    value={sortField}
+                    onChange={(e) => 
+                        dispatch({
+                            type: todosActions.setSortField,
+                            value: e.target.value,
+                        })
+                    }
+                    >
                         <option value="title">Title</option>
                         <option value="createdTime">Time added</option>
                     </select>
@@ -49,7 +65,16 @@ function TodosViewForm({queryString, setQueryString}){
 
                 <label className="labels">
                     Direction
-                    <select id="directionSelect">
+                    <select 
+                    id="directionSelect"
+                    value={sortDirection}
+                    onChange={(e) => 
+                        dispatch({
+                            type: todosActions.setSortDirection,
+                            value: e.target.value,
+                        })
+                    }
+                    >
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                     </select>
@@ -60,3 +85,9 @@ function TodosViewForm({queryString, setQueryString}){
 }
 
 export default TodosViewForm;
+
+const StyledForm = styled.form`
+    display: flex;
+    gap: 8px;
+    margin-top:10px;
+    `;

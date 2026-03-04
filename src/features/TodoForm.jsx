@@ -3,17 +3,6 @@ import { useState } from "react";
 import TextInputWithLabel from "../shared/TextInputWithLabel";
 import styled from "styled-components";
 
-const StyledForm = styled.form`
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    `;
-const StyledButton = styled.button`
-    padding: 6px 12px;
-    &: disabled{
-        font-style: italic;
-    }`;
-
 function TodoForm( {onAddTodo, isSaving} ){
     //created local state
     const [workingTodoTitle, setWorkingTodoTitle] = useState("");
@@ -42,3 +31,14 @@ function TodoForm( {onAddTodo, isSaving} ){
 }
 
 export default TodoForm;
+
+const StyledForm = styled.form`
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    `;
+const StyledButton = styled.button`
+    padding: 6px 12px;
+    &: disabled{
+        font-style: italic;
+    }`;
