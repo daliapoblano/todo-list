@@ -1,10 +1,8 @@
 import './App.css'
 import styles from './App.module.css';
-import TodoList from './features/TodoList/TodoList'
-import TodoForm from "./features/TodoForm";
-import TodosViewForm from "./features/TodosViewForm";
 import { useState, useEffect, useCallback } from "react";
 import { useReducer } from "react";
+import TodosPage from "./pages/TodosPage";
 import todosReducer, {
   actions as todosActions,
   initialState as initialTodosState,
@@ -174,24 +172,12 @@ function App() {
   return (
     <div className={styles.appContainer}>
       <h1>My Todos</h1>
-      {/* Adding instance of the TodoForm */}
-      <TodoForm 
-      onAddTodo = {addTodo}
-      isSaving ={todoState.isSaving} 
-      />
-      {/* Adding instance of the TodoList  + passing the helper function */}
-      <TodoList 
-      todoList={todoState.todoList}
-      onCompleteTodo={completeTodo}
-      onUpdateTodo={updateTodo}
-      isLoading={todoState.isLoading}
-      isSaving={todoState.isSaving}
-      />
-      <TodosViewForm 
-      queryString={todoState.queryString}
-      sortField={todoState.sortField}
-      sortDirection={todoState.sortDirection}
-      dispatch={dispatch}
+      <TodosPage
+        todoState={todoState}
+        addTodo={addTodo}
+        completeTodo={completeTodo}
+        updateTodo={updateTodo}
+        dispatch={dispatch}
       />
       {/* Error message display */}
       {todoState.errorMessage && (
