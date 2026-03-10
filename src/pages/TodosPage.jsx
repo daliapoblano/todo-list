@@ -7,6 +7,11 @@ import styles from "../App.module.css";
 function TodosPage({todoState, addTodo, completeTodo, updateTodo, dispatch}){
 
     const {todoList,isSaving,isLoading,queryString,sortField,sortDirection} = todoState;
+    const [searchParams, setSearchParams] = useSearchParams();
+    const itemsPerPage = 15;
+    const currentPage = parseInt(searchParams.get("page") || "1", 10);
+    const indexOfFirstTodo = (currentPage - 1) * itemsPerPage;
+    const totalPages = Math.ceil(filteredTodoList.length / itemsPerPage);
 
     return (
         <div className={styles.appContainer}>
