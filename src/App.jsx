@@ -202,7 +202,7 @@ function App() {
           }
         />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/*" element={<h1>Not Found</h1>} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       {/* Error message display */}
       {todoState.errorMessage && (
