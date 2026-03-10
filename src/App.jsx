@@ -3,6 +3,8 @@ import styles from './App.module.css';
 import { useState, useEffect, useCallback } from "react";
 import { useReducer } from "react";
 import TodosPage from "./pages/TodosPage";
+import Header from "./shared/Header";
+import { useLocation } from "react-router-dom";
 import todosReducer, {
   actions as todosActions,
   initialState as initialTodosState,
@@ -14,6 +16,19 @@ const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${impor
 function App() {
   //State value that will hold a new todo
   const [todoState, dispatch] = useReducer(todosReducer, initialTodosState);
+  const location = useLocation();
+  const [title, setTitle] = useState("Todo List");
+
+  //changing route
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setTitle("Todo List");
+    } else if (location.pathname === "/about") {
+      setTitle("About");
+    } else {
+      setTitle("Not Found");
+    }
+  }, [location]);
   
   const encodeUrl = useCallback(() => {
     let sortQuery = `sort[0][field]=${todoState.sortField}&sort[0][direction]=${todoState.sortDirection}`;
@@ -171,7 +186,7 @@ function App() {
   
   return (
     <div className={styles.appContainer}>
-      <h1>My Todos</h1>
+      <Header title= {title} />
       <TodosPage
         todoState={todoState}
         addTodo={addTodo}
