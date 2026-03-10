@@ -17,15 +17,17 @@ function TodosPage({todoState, addTodo, completeTodo, updateTodo, dispatch}){
     const totalPages = Math.ceil(filteredTodoList.length / itemsPerPage);
 
     useEffect(() => {
-        if (
-          isNaN(currentPage) ||
-          currentPage < 1 ||
-          currentPage > totalPages
-        ) {
-          navigate("/");
+        if (totalPages > 0) {
+          if (
+            isNaN(currentPage) ||
+            currentPage < 1 ||
+            currentPage > totalPages
+          ) {
+            navigate("/");
+          }
         }
       }, [currentPage, totalPages, navigate]);
-
+      
     function handlePreviousPage() {
         if (currentPage > 1) {
           setSearchParams({ page: currentPage - 1 });
