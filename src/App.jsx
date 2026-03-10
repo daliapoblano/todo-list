@@ -5,11 +5,11 @@ import { useReducer } from "react";
 import TodosPage from "./pages/TodosPage";
 import Header from "./shared/Header";
 import { useLocation, Routes, Route } from "react-router-dom";
+import AboutPage from "./pages/AboutPage";
 import todosReducer, {
   actions as todosActions,
   initialState as initialTodosState,
 } from "./reducers/todos.reducer";
-
 
 const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`; 
 
@@ -187,13 +187,22 @@ function App() {
   return (
     <div className={styles.appContainer}>
       <Header title= {title} />
-      <TodosPage
-        todoState={todoState}
-        addTodo={addTodo}
-        completeTodo={completeTodo}
-        updateTodo={updateTodo}
-        dispatch={dispatch}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <TodosPage
+              todoState={todoState}
+              addTodo={addTodo}
+              completeTodo={completeTodo}
+              updateTodo={updateTodo}
+              dispatch={dispatch}
+            />
+          }
+        />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/*" element={<h1>Not Found</h1>} />
+      </Routes>
       {/* Error message display */}
       {todoState.errorMessage && (
       <div className={styles.errorBox}>
