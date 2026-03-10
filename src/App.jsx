@@ -6,6 +6,7 @@ import TodosPage from "./pages/TodosPage";
 import Header from "./shared/Header";
 import { useLocation, Routes, Route } from "react-router-dom";
 import AboutPage from "./pages/AboutPage";
+import NotFound from "./pages/NotFound";
 import todosReducer, {
   actions as todosActions,
   initialState as initialTodosState,
